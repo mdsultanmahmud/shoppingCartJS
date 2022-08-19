@@ -1,33 +1,21 @@
-function caseNumberHandling(isIncrease){
-     // get element 
 
-     const caseNumberField = document.getElementById('case-number-field')
-     const caseNumberFieldString = caseNumberField.value
-     // change the string to number 
-     const previousCaseNumber = parseInt(caseNumberFieldString)
-     let newCaseNumber
-     if(isIncrease){
-        newCaseNumber = previousCaseNumber + 1
-     }else{
-        newCaseNumber = previousCaseNumber - 1
-     }
-     // set the update case number 
-     caseNumberField.value = newCaseNumber
-     return newCaseNumber
-}
 function casePriceHandle(newCaseNumber){
     const totalCaseCost = newCaseNumber * 59;
     const casePrice = document.getElementById('case-price')
-    casePrice.innerText ='$'+ totalCaseCost
+    casePrice.innerText =totalCaseCost
 }
 // add event listener to the case plus button 
 
 document.getElementById('btn-case-plus').addEventListener('click', function () {
-    const newCaseNumber =   caseNumberHandling(true)
+    const newCaseNumber = ElementNumberHandling('case-number-field', true)
     casePriceHandle(newCaseNumber)
+    // here is subTotal price 
+    getTotalPrice()
 })
 
 document.getElementById('btn-case-minus').addEventListener('click', function () {
-    const newCaseNumber = caseNumberHandling(false)
+    const newCaseNumber = ElementNumberHandling('case-number-field', false)
     casePriceHandle(newCaseNumber)
+    // here is subTotal price 
+    getTotalPrice()
 })
